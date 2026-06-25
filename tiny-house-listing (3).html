@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>East Austin Tiny House · Furnished Monthly Rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --clay:   #C8785A;
+      --sage:   #7A9E87;
+      --cream:  #F7F3EE;
+      --bark:   #3B2F27;
+      --mist:   #E8EDE9;
+      --text:   #2C2218;
+      --light:  #9B8B7E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 92vh;
+      overflow: hidden;
+    }
+
+    .hero-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 3rem 3.5rem;
+      background: linear-gradient(to top, rgba(25,16,10,0.82) 0%, rgba(25,16,10,0.2) 60%, transparent 100%);
+      color: white;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      max-width: 600px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: #EDD5C2;
+    }
+
+    .hero-sub {
+      margin-top: 0.9rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── FACTS STRIP ── */
+    .facts-strip {
+      background: var(--sage);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .fact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.4rem 2.6rem;
+      border-right: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      gap: 0.2rem;
+    }
+
+    .fact:last-child { border-right: none; }
+
+    .fact-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .fact-label {
+      font-size: 0.64rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.82;
+    }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 4px;
+      background: var(--bark);
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    .gallery-img:hover { opacity: 0.92; }
+
+    .gallery-item-wide {
+      grid-column: span 2;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 5rem 0 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .section-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 1.4rem;
+    }
+
+    .about-body p {
+      color: #5C4A3C;
+      font-size: 0.97rem;
+      line-height: 1.78;
+      margin-bottom: 1rem;
+    }
+
+    .about-aside {
+      background: var(--mist);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .aside-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(122,158,135,0.2);
+    }
+
+    .aside-item:last-child { border-bottom: none; }
+
+    .aside-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      width: 30px;
+      text-align: center;
+      margin-top: 0.1rem;
+    }
+
+    .aside-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 0.15rem;
+    }
+
+    .aside-text span {
+      font-size: 0.82rem;
+      color: var(--light);
+    }
+
+    /* ── AMENITIES ── */
+    .amenities {
+      padding: 4rem 0;
+      border-top: 1px solid rgba(59,47,39,0.1);
+    }
+
+    .amenities-heading {
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+
+    .amenity-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.4rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      box-shadow: 0 1px 4px rgba(59,47,39,0.06);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .amenity-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(59,47,39,0.1);
+    }
+
+    .amenity-icon { font-size: 1.4rem; }
+    .amenity-name { font-size: 0.88rem; font-weight: 500; }
+
+    /* ── NEIGHBORHOOD ── */
+    .neighborhood {
+      background: var(--bark);
+      color: white;
+      padding: 5rem 0;
+    }
+
+    .neighborhood .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .neighborhood .section-eyebrow { color: var(--clay); }
+    .neighborhood .section-heading { color: white; }
+
+    .neighborhood-body p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.97rem;
+      line-height: 1.78;
+      margin-bottom: 1rem;
+    }
+
+    .nearby-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .nearby-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .nearby-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--clay);
+      flex-shrink: 0;
+    }
+
+    /* ── RULES ── */
+    .rules {
+      padding: 4rem 0;
+      border-top: 1px solid rgba(59,47,39,0.1);
+    }
+
+    .rules-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem;
+      border-radius: 10px;
+      background: var(--mist);
+    }
+
+    .rule-item.no { background: #FDF0EC; }
+
+    .rule-badge { font-size: 1.2rem; flex-shrink: 0; }
+
+    .rule-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 0.1rem;
+    }
+
+    .rule-text span { font-size: 0.82rem; color: var(--light); }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 5rem 0;
+      text-align: center;
+      background: linear-gradient(135deg, var(--sage) 0%, #5D8A72 100%);
+      color: white;
+    }
+
+    .cta-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 0.8rem;
+    }
+
+    .cta-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .cta-body {
+      font-size: 1rem;
+      opacity: 0.85;
+      max-width: 460px;
+      margin: 0 auto 2rem;
+      line-height: 1.65;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: var(--sage);
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      padding: 1rem 2.6rem;
+      border-radius: 50px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .cta-btn:hover {
+      background: var(--cream);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 1.8rem 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      background: var(--bark);
+    }
+
+    /* ── GALLERY CLICK & SEE-ALL ── */
+    .gallery-img { cursor: pointer; }
+
+    .gallery-see-all {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-see-all .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .see-all-btn {
+      position: absolute;
+      inset: 0;
+      background: rgba(30,20,14,0.52);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 0.2s ease;
+    }
+
+    .see-all-btn:hover { background: rgba(30,20,14,0.7); }
+
+    .see-all-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,10,7,0.96);
+      z-index: 1000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lb-img-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 4rem 5rem 1rem;
+      min-height: 0;
+    }
+
+    .lb-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
+      display: block;
+      transition: opacity 0.18s ease;
+    }
+
+    .lb-img.loading { opacity: 0.3; }
+
+    .lb-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.4rem;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      z-index: 10;
+    }
+
+    .lb-close:hover { background: rgba(255,255,255,0.2); }
+
+    .lb-prev, .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      z-index: 10;
+      line-height: 1;
+    }
+
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+    .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.22); }
+
+    .lb-counter {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 0;
+    }
+
+    .lb-thumbs {
+      display: flex;
+      gap: 6px;
+      padding: 0.8rem 1rem;
+      overflow-x: auto;
+      max-width: 100%;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) transparent;
+    }
+
+    .lb-thumb {
+      width: 60px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      flex-shrink: 0;
+      opacity: 0.45;
+      border: 2px solid transparent;
+      transition: opacity 0.15s, border-color 0.15s;
+    }
+
+    .lb-thumb:hover { opacity: 0.75; }
+    .lb-thumb.active { opacity: 1; border-color: var(--clay); }
+
+    /* ── MAP ── */
+    .map-section {
+      padding: 4rem 0;
+      background: var(--cream);
+      border-top: 1px solid rgba(59,47,39,0.1);
+    }
+
+    .map-section .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .map-header {
+      text-align: center;
+    }
+
+    .map-frame {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(59,47,39,0.12);
+      aspect-ratio: 16/7;
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { height: 75vh; }
+      .hero-overlay { padding: 2rem; }
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+      .gallery-item-wide { grid-column: span 2; }
+      .about { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
+      .neighborhood .container { grid-template-columns: 1fr; gap: 2.5rem; }
+      .rules-grid { grid-template-columns: 1fr; }
+      .fact { padding: 1rem 1.4rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .amenity-card, .cta-btn, .gallery-img { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <img
+      class="hero-main-img"
+      src="https://raw.githubusercontent.com/suminabhatti/east_austin_tiny_house/main/3400_NORWOOD_HILL_ADU-35.jpg"
+      alt="East Austin tiny house exterior with porch seating and arched gate"
+    />
+    <div class="hero-overlay">
+      <p class="hero-eyebrow">East Austin · Monthly Furnished Rental</p>
+      <h1 class="hero-title">A tiny house with <em>big Austin energy.</em></h1>
+      <p class="hero-sub">390 sq ft · 1 bed · 1 bath · Private entrance · Built 2025</p>
+    </div>
+  </section>
+
+  <!-- ── QUICK FACTS STRIP ── -->
+  <div class="facts-strip">
+    <div class="fact"><span class="fact-value">390</span><span class="fact-label">Sq Ft</span></div>
+    <div class="fact"><span class="fact-value">1 BD</span><span class="fact-label">Bedroom</span></div>
+    <div class="fact"><span class="fact-value">1 BA</span><span class="fact-label">Full Bath</span></div>
+    <div class="fact"><span class="fact-value">2025</span><span class="fact-label">Built</span></div>
+    <div class="fact"><span class="fact-value">MTM</span><span class="fact-label">Monthly</span></div>
+  </div>
+
+  <!-- ── PHOTO GALLERY ── -->
+  <div class="gallery" id="mainGallery">
+    <!-- first 5 hero tiles -->
+    <img class="gallery-img gallery-item-wide" data-index="0"
+      src="https://raw.githubusercontent.com/suminabhatti/east_austin_tiny_house/main/3400_NORWOOD_HILL_ADU-2.jpg"
+      alt="Living area" loading="lazy" />
+    <img class="gallery-img" data-index="1"
+      src="https://raw.githubusercontent.com/suminabhatti/east_austin_tiny_house/main/3400_NORWOOD_HILL_ADU-28.jpg"
+      alt="Bedroom" loading="lazy" />
+    <img class="gallery-img" data-index="2"
+      src="https://raw.githubusercontent.com/suminabhatti/east_austin_tiny_house/main/3400_NORWOOD_HILL_ADU-22.jpg"
+      alt="Kitchen" loading="lazy" />
+    <img class="gallery-img" data-index="3"
+      src="https://raw.githubusercontent.com/suminabhatti/east_austin_tiny_house/main/3400_NORWOOD_HILL_ADU-15.jpg"
+      alt="Bathroom" loading="lazy" />
+    <!-- 5th tile is the "see all" overlay tile -->
+    <div class="gallery-see-all" data-index="4">
+      <img class="gallery-img"
+        src="https://raw.githubusercontent.com/suminabhatti/east_austin_tiny_house/main/3400_NORWOOD_HILL_ADU-1.jpg"
+        alt="Porch" loading="lazy" />
+      <button class="see-all-btn" onclick="openLightbox(4)">
+        <span class="see-all-icon">⊞</span>
+        <span>See all 35 photos</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo gallery">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Close gallery">✕</button>
+    <button class="lb-prev" onclick="changePhoto(-1)" aria-label="Previous photo">‹</button>
+    <button class="lb-next" onclick="changePhoto(1)" aria-label="Next photo">›</button>
+    <div class="lb-img-wrap">
+      <img class="lb-img" id="lbImg" src="" alt="" />
+    </div>
+    <div class="lb-counter" id="lbCounter">1 / 35</div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
+  </div>
+
+  <!-- ── ABOUT ── -->
+  <section class="about container">
+    <div class="about-body">
+      <p class="section-eyebrow">About the Space</p>
+      <h2 class="section-heading">Your own little corner of East Austin.</h2>
+      <p>Tucked into the backyard of a centrally located East Austin home, this brand-new tiny house was built in 2025 and designed for solo travelers who want a calm, private base without sacrificing city access.</p>
+      <p>You have your own gate entrance — no walking through anyone's home — leading onto your private porch and into a semi-private yard that's yours to enjoy. The setup feels like a guest cottage, not a sublet.</p>
+      <p>Everything you need is included: Google WiFi, washer/dryer in-unit, and a fully furnished kitchen stocked with all the basics so you can settle right in.</p>
+    </div>
+    <div class="about-aside">
+      <div class="aside-item">
+        <span class="aside-icon">🚪</span>
+        <div class="aside-text">
+          <strong>Private entrance</strong>
+          <span>Gate into the backyard — fully independent access</span>
+        </div>
+      </div>
+      <div class="aside-item">
+        <span class="aside-icon">🌿</span>
+        <div class="aside-text">
+          <strong>Semi-private yard</strong>
+          <span>Shared with your host, but separate from the main house</span>
+        </div>
+      </div>
+      <div class="aside-item">
+        <span class="aside-icon">🚿</span>
+        <div class="aside-text">
+          <strong>Full bath with standing shower</strong>
+          <span>Marble vanity, matte black fixtures — not your average rental bath</span>
+        </div>
+      </div>
+      <div class="aside-item">
+        <span class="aside-icon">🅿️</span>
+        <div class="aside-text">
+          <strong>Free street parking</strong>
+          <span>Plenty available on the street</span>
+        </div>
+      </div>
+      <div class="aside-item">
+        <span class="aside-icon">🍽️</span>
+        <div class="aside-text">
+          <strong>Thoughtfully stocked kitchen</strong>
+          <span>Nice dishware, pots &amp; pans — cook a real meal, not just ramen</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AMENITIES ── -->
+  <section class="amenities">
+    <div class="container">
+      <div class="amenities-heading">
+        <p class="section-eyebrow">What's included</p>
+        <h2 class="section-heading">Move in. Don't think twice.</h2>
+      </div>
+      <div class="amenities-grid">
+        <div class="amenity-card"><span class="amenity-icon">📶</span><span class="amenity-name">Google WiFi</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🫧</span><span class="amenity-name">Washer &amp; Dryer In-Unit</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🍳</span><span class="amenity-name">Fully Furnished Kitchen</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🛏️</span><span class="amenity-name">Furnished Bedroom</span></div>
+        <div class="amenity-card"><span class="amenity-icon">📺</span><span class="amenity-name">Smart TV</span></div>
+        <div class="amenity-card"><span class="amenity-icon">❄️</span><span class="amenity-name">Mini-Split A/C &amp; Heat</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🌳</span><span class="amenity-name">Semi-Private Yard</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🔑</span><span class="amenity-name">Private Gate Entry</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🪑</span><span class="amenity-name">Private Porch Seating</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🅿️</span><span class="amenity-name">Free Street Parking</span></div>
+        <div class="amenity-card"><span class="amenity-icon">🍽️</span><span class="amenity-name">Nice Dishware &amp; Cookware</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEIGHBORHOOD ── -->
+  <section class="neighborhood">
+    <div class="container">
+      <div class="neighborhood-body">
+        <p class="section-eyebrow">The Neighborhood</p>
+        <h2 class="section-heading">Quiet block. Everything else? Minutes away.</h2>
+        <p>East Austin is one of those neighborhoods that still has soul. You're in a quiet, established residential area — the kind where neighbors wave — but the city is right there when you want it.</p>
+        <p>Healthcare workers especially love this location: hospitals are close by, and you're surrounded by all the practical stuff (groceries, coffee, tacos) without any of the noise.</p>
+      </div>
+      <ul class="nearby-list">
+        <li><span class="nearby-dot"></span>Hospitals &amp; medical centers nearby</li>
+        <li><span class="nearby-dot"></span>Grocery stores within easy reach</li>
+        <li><span class="nearby-dot"></span>Coffee shops around the corner</li>
+        <li><span class="nearby-dot"></span>Taco joints (this is Austin, after all)</li>
+        <li><span class="nearby-dot"></span>Multiple neighborhood parks minutes away</li>
+        <li><span class="nearby-dot"></span>Quiet, established residential streets</li>
+        <li><span class="nearby-dot"></span>Central East Austin — everywhere is close</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── MAP ── -->
+  <section class="map-section">
+    <div class="container">
+      <div class="map-header">
+        <p class="section-eyebrow">Location</p>
+        <h2 class="section-heading">Central East Austin</h2>
+      </div>
+      <div class="map-frame">
+        <iframe
+          title="East Austin Tiny House Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3446.8!2d-97.7089!3d30.2915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644ca4f1c7b6e47%3A0x6b1e2c3d4e5f6a7b!2s3400%20Norwood%20Hill%20Dr%2C%20Austin%2C%20TX%2078702!5e0!3m2!1sen!2sus!4v1687654321000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOUSE RULES ── -->
+  <section class="rules">
+    <div class="container">
+      <p class="section-eyebrow">House Rules</p>
+      <h2 class="section-heading">A few things to know.</h2>
+      <div class="rules-grid">
+        <div class="rule-item">
+          <span class="rule-badge">✅</span>
+          <div class="rule-text">
+            <strong>Solo travelers welcome</strong>
+            <span>Designed with one person in mind</span>
+          </div>
+        </div>
+        <div class="rule-item no">
+          <span class="rule-badge">🚫</span>
+          <div class="rule-text">
+            <strong>No pets</strong>
+            <span>We love animals, but not in this unit</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <span class="rule-badge">🌿</span>
+          <div class="rule-text">
+            <strong>Shared yard, your own space</strong>
+            <span>You and your host each have separate outdoor areas</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <span class="rule-badge">📅</span>
+          <div class="rule-text">
+            <strong>Monthly furnished rental</strong>
+            <span>Listed on Furnished Finder for travel nurses &amp; professionals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <div class="container">
+      <p class="cta-eyebrow">Ready to call it home?</p>
+      <h2 class="cta-heading">Come stay a while.</h2>
+      <p class="cta-body">Perfect for travel nurses, remote workers, and anyone who needs a calm, fully furnished home base in the heart of East Austin.</p>
+      <a href="https://www.furnishedfinder.com/members/pm/edit-details?p=825376_1" class="cta-btn" target="_blank" rel="noopener">View on Furnished Finder →</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>East Austin Tiny House · Furnished Monthly Rental · Austin, TX</p>
+  </footer>
+
+  <script>
+    const BASE = 'https://raw.githubusercontent.com/suminabhatti/east_austin_tiny_house/main/3400_NORWOOD_HILL_ADU-';
+    const TOTAL = 35;
+
+    // Build photo list: all 35, in order
+    const photos = Array.from({ length: TOTAL }, (_, i) => ({
+      src: `${BASE}${i + 1}.jpg`,
+      alt: `Photo ${i + 1} of the East Austin tiny house`
+    }));
+
+    let current = 0;
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lbImg');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbThumbs  = document.getElementById('lbThumbs');
+
+    // Build thumbnails once
+    photos.forEach((p, i) => {
+      const thumb = document.createElement('img');
+      thumb.src = p.src;
+      thumb.alt = p.alt;
+      thumb.className = 'lb-thumb';
+      thumb.loading = 'lazy';
+      thumb.onclick = () => goTo(i);
+      lbThumbs.appendChild(thumb);
+    });
+
+    function openLightbox(index) {
+      current = index ?? 0;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      render();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function changePhoto(dir) {
+      current = (current + dir + TOTAL) % TOTAL;
+      render();
+    }
+
+    function goTo(index) {
+      current = index;
+      render();
+    }
+
+    function render() {
+      lbImg.classList.add('loading');
+      lbImg.onload = () => lbImg.classList.remove('loading');
+      lbImg.src = photos[current].src;
+      lbImg.alt = photos[current].alt;
+      lbCounter.textContent = `${current + 1} / ${TOTAL}`;
+
+      // Update thumb active state and scroll into view
+      const thumbEls = lbThumbs.querySelectorAll('.lb-thumb');
+      thumbEls.forEach((t, i) => t.classList.toggle('active', i === current));
+      thumbEls[current]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    // Click any gallery tile to open lightbox
+    document.querySelectorAll('#mainGallery .gallery-img').forEach((img) => {
+      img.addEventListener('click', () => {
+        const idx = parseInt(img.dataset.index ?? 0);
+        openLightbox(idx);
+      });
+    });
+
+    // Keyboard nav
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'ArrowRight') changePhoto(1);
+      if (e.key === 'ArrowLeft')  changePhoto(-1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
+
+    // Click backdrop to close
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  </script>
+</body>
+</html>
